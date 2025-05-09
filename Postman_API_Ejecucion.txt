@@ -1,25 +1,46 @@
-✅ POSTMAN: PRUEBAS API
+✅ PRUEBAS POSTMAN – API CHALLENGE BANCO
+=========================================
 
-🔹🔐 Vía Azure API Management (requiere suscripción)
+🧪 Esta guía contiene todos los comandos necesarios para validar los endpoints
+usando Postman con los entornos: 
+🔸 Azure API Management (requiere suscripción con clave)
+🔸 Render (servidor real sin autenticación)
 
-Base URL:  
-http://api-banco-andres.azure-api.net/clientes
+------------------------------------------------------------
+🔹 1) PRUEBAS CON AZURE API MANAGEMENT (APIM)
+------------------------------------------------------------
 
+🌐 BASE URL AZURE:
+http://api-banco-andres.azure-api.net
+
+🛡️ API KEY (Clave de Suscripción):
+681d8d783984aa0063070001
+
+📌 Nota: esta clave debe ir en el header "Ocp-Apim-Subscription-Key" en cada petición.
+
+─────────────────────────────
 🟢 GET – Listar Clientes (Azure)
+─────────────────────────────
 - Método: GET
-- URL:
+- URL: 
   http://api-banco-andres.azure-api.net/clientes
-- Headers obligatorios:
-  Ocp-Apim-Subscription-Key: TU_CLAVE_API_DE_SUSCRIPCIÓN
 
+- Headers:
+  Content-Type: application/json
+  Ocp-Apim-Subscription-Key: 681d8d783984aa0063070001
+
+─────────────────────────────
 🟢 POST – Crear Cliente (Azure)
+─────────────────────────────
 - Método: POST
 - URL:
   http://api-banco-andres.azure-api.net/clientes
+
 - Headers:
   Content-Type: application/json
-  Ocp-Apim-Subscription-Key: TU_CLAVE_API_DE_SUSCRIPCIÓN
-- Body (raw - JSON):
+  Ocp-Apim-Subscription-Key: 681d8d783984aa0063070001
+
+- Body (raw – JSON):
 {
   "identificacion": 123456789,
   "nombre": "Juan Pérez",
@@ -31,23 +52,65 @@ http://api-banco-andres.azure-api.net/clientes
   "estado": true
 }
 
-🔹🌐 Vía Render (servidor real sin autenticación)
+─────────────────────────────
+🟢 POST – Crear Movimiento (Azure)
+─────────────────────────────
+- Método: POST
+- URL:
+  http://api-banco-andres.azure-api.net/movimientos
 
-Base URL:  
-https://challenge-banco.onrender.com/clientes
+- Headers:
+  Content-Type: application/json
+  Ocp-Apim-Subscription-Key: 681d8d783984aa0063070001
 
+- Body (raw – JSON):
+{
+  "tipoMovimiento": "Retiro",
+  "valor": 200.0,
+  "idCuenta": "12345"
+}
+
+─────────────────────────────
+🟢 GET – Listar Movimientos (Azure)
+─────────────────────────────
+- Método: GET
+- URL:
+  http://api-banco-andres.azure-api.net/movimientos
+
+- Headers:
+  Content-Type: application/json
+  Ocp-Apim-Subscription-Key: 681d8d783984aa0063070001
+
+------------------------------------------------------------
+🔹 2) PRUEBAS CON RENDER (SERVIDOR REAL)
+------------------------------------------------------------
+
+🌐 BASE URL RENDER:
+https://challenge-banco.onrender.com
+
+📌 Render no requiere clave, pero puede estar inactivo por inactividad prolongada.
+
+─────────────────────────────
 🟢 GET – Listar Clientes (Render)
+─────────────────────────────
 - Método: GET
 - URL:
   https://challenge-banco.onrender.com/clientes
 
+- Headers:
+  Content-Type: application/json
+
+─────────────────────────────
 🟢 POST – Crear Cliente (Render)
+─────────────────────────────
 - Método: POST
 - URL:
   https://challenge-banco.onrender.com/clientes
+
 - Headers:
   Content-Type: application/json
-- Body (raw - JSON):
+
+- Body (raw – JSON):
 {
   "identificacion": 987654321,
   "nombre": "Ana García",
@@ -58,3 +121,40 @@ https://challenge-banco.onrender.com/clientes
   "contrasena": "clave456",
   "estado": true
 }
+
+─────────────────────────────
+🟢 POST – Crear Movimiento (Render)
+─────────────────────────────
+- Método: POST
+- URL:
+  https://challenge-banco.onrender.com/movimientos
+
+- Headers:
+  Content-Type: application/json
+
+- Body (raw – JSON):
+{
+  "tipoMovimiento": "Depósito",
+  "valor": 300.0,
+  "idCuenta": "12345"
+}
+
+─────────────────────────────
+🟢 GET – Listar Movimientos (Render)
+─────────────────────────────
+- Método: GET
+- URL:
+  https://challenge-banco.onrender.com/movimientos
+
+- Headers:
+  Content-Type: application/json
+
+------------------------------------------------------------
+📦 CONSIDERACIONES ADICIONALES
+------------------------------------------------------------
+🔸 Verifica que los puertos estén abiertos si trabajas localmente.
+🔸 Azure puede responder con errores 401 si no incluyes la clave correctamente.
+🔸 Render puede tardar unos segundos en despertar si estuvo inactivo.
+🔸 Recuerda probar tanto retiros como depósitos para validar reglas de negocio.
+🔸 Revisa en H2 Console si los datos están correctamente reflejados.
+
