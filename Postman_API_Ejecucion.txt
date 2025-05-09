@@ -1,0 +1,60 @@
+✅ POSTMAN: PRUEBAS API
+
+🔹🔐 Vía Azure API Management (requiere suscripción)
+
+Base URL:  
+http://api-banco-andres.azure-api.net/clientes
+
+🟢 GET – Listar Clientes (Azure)
+- Método: GET
+- URL:
+  http://api-banco-andres.azure-api.net/clientes
+- Headers obligatorios:
+  Ocp-Apim-Subscription-Key: TU_CLAVE_API_DE_SUSCRIPCIÓN
+
+🟢 POST – Crear Cliente (Azure)
+- Método: POST
+- URL:
+  http://api-banco-andres.azure-api.net/clientes
+- Headers:
+  Content-Type: application/json
+  Ocp-Apim-Subscription-Key: TU_CLAVE_API_DE_SUSCRIPCIÓN
+- Body (raw - JSON):
+{
+  "identificacion": 123456789,
+  "nombre": "Juan Pérez",
+  "genero": "masculino",
+  "edad": 30,
+  "direccion": "Quito",
+  "telefono": "0999999999",
+  "contrasena": "clave123",
+  "estado": true
+}
+
+🔹🌐 Vía Render (servidor real sin autenticación)
+
+Base URL:  
+https://challenge-banco.onrender.com/clientes
+
+🟢 GET – Listar Clientes (Render)
+- Método: GET
+- URL:
+  https://challenge-banco.onrender.com/clientes
+
+🟢 POST – Crear Cliente (Render)
+- Método: POST
+- URL:
+  https://challenge-banco.onrender.com/clientes
+- Headers:
+  Content-Type: application/json
+- Body (raw - JSON):
+{
+  "identificacion": 987654321,
+  "nombre": "Ana García",
+  "genero": "femenino",
+  "edad": 28,
+  "direccion": "Guayaquil",
+  "telefono": "0987654321",
+  "contrasena": "clave456",
+  "estado": true
+}
